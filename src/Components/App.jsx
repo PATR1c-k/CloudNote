@@ -1,10 +1,23 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from "./Navbar.jsx";
+import Home from "./Home.jsx";
+import About from "./About.jsx"
+import NoteState from "../context/notes/NoteState.js";
 
 function App() {
   return (
     <div >
-      <h1>This is a testing for initialisation of project</h1>
-    </div>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/about" element={<About />}></Route>
+          </Routes>
+        </Router>
+      </NoteState>
+    </div >
   );
 }
 
