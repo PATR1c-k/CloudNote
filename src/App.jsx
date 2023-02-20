@@ -1,0 +1,56 @@
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar.jsx";
+import Home from "./Components/Home.jsx";
+import About from "./Components/About.jsx";
+import NoteState from "./context/notes/NoteState.js";
+import Alert from "./Components/Alert.jsx";
+import Signup from "./Components/Signup.jsx";
+import Login from "./Components/Login.jsx";
+
+function App() {
+  const [alert, setalert] = useState(null);
+
+  function showAlert(message, type) {
+    setalert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setalert(null);
+    }, 1500);
+  }
+
+  return (
+    <div>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <Alert alert={alert} />
+          <div className="container">
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<Home showAlert={showAlert} />}
+              ></Route>
+              <Route exact path="/about" element={<About />}></Route>
+              <Route
+                exact
+                path="/login"
+                element={<Login showAlert={showAlert} />}
+              ></Route>
+              <Route
+                exact
+                path="/signup"
+                element={<Signup showAlert={showAlert} />}
+              ></Route>
+            </Routes>
+          </div>
+        </Router>
+      </NoteState>
+    </div>
+  );
+}
+
+export default App;

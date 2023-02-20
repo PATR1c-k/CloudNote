@@ -21,17 +21,7 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
 
-    // To do api calls
-    console.log("adding a new note");
-    let note = {
-      _id: "ObjectId('63e64b677817e7bd2e81')",
-      user: "ObjectId('63e4e8a8bda94680643ab918')",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "ISODate('2023-02-10T13:49:27.313Z')",
-      __v: 0,
-    };
+    const note = await response.json();
     setnotes(notes.concat(note));
   };
 
@@ -70,16 +60,20 @@ const NoteState = (props) => {
 
       body: JSON.stringify({ title, description, tag }),
     });
-    const json = response.json();
-    console.log(id);
+    const json = await response.json();
+    console.log(json);
+
+    let newNotes = JSON.parse(JSON.stringify(notes));
     //Logic to edit in client
-    notes.forEach((element) => {
-      if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+    newNotes.forEach((note) => {
+      if (note._id === id) {
+        note.title = title;
+        note.description = description;
+        note.tag = tag;
       }
     });
+    // console.log(notes);
+    setnotes(newNotes);
   };
 
   // get all notes

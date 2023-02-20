@@ -3,9 +3,9 @@ import NoteContext from "../context/notes/noteContext";
 import { useContext } from "react";
 
 function NoteItem(props) {
-  const { note } = props;
+  const { note, updateNote } = props;
   const context = useContext(NoteContext);
-  const { deleteNote, editNote } = context;
+  const { deleteNote } = context;
 
   return (
     <div className="container my-2">
@@ -22,7 +22,7 @@ function NoteItem(props) {
             <i
               className="fa-solid fa-pen mx-2"
               onClick={() => {
-                editNote(note);
+                updateNote(note);
               }}
             ></i>
           </div>
