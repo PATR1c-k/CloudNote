@@ -29,6 +29,7 @@ function Login(props) {
       props.showAlert("Logged in successfull!", "success");
     } else {
       props.showAlert("Login Failed!", "danger");
+      navigate("/signup");
     }
   };
 
@@ -38,7 +39,8 @@ function Login(props) {
 
   return (
     <div className="my-5">
-      <form onSubmit={handleSubmit}>
+      <h2>Login to continue to CloudNote</h2>
+      <form onSubmit={handleSubmit} className="my-5">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email address

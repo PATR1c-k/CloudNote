@@ -39,7 +39,8 @@ function Signup(props) {
 
   return (
     <div className="my-5">
-      <form onSubmit={handleSubmit}>
+      <h2>Signup for CloudNote</h2>
+      <form onSubmit={handleSubmit} className="my-5">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name

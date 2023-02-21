@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
   let location = useLocation();
@@ -9,9 +9,16 @@ function Navbar() {
     // console.log(location.pathname);
   }, [location]);
 
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             CloudNote
@@ -52,14 +59,24 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex">
-              <Link to="/login" className="btn btn-primary mx-2" role="button">
-                Login
-              </Link>
-              <Link to="/signup" className="btn btn-secondary" role="button">
-                Signup
-              </Link>
-            </form>
+            {!localStorage.getItem("token") ? (
+              <form className="d-flex">
+                <Link
+                  to="/login"
+                  className="btn btn-primary mx-2"
+                  role="button"
+                >
+                  Login
+                </Link>
+                <Link to="/signup" className="btn btn-secondary" role="button">
+                  Signup
+                </Link>
+              </form>
+            ) : (
+              <button className="btn btn-primary" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </nav>

@@ -19,7 +19,7 @@ function AddNote(props) {
       description: "",
       tag: "",
     });
-    props.showAlert("Note Added successfully", "success");
+    props.showAlert(":Note Added successfully", "success");
   };
 
   const onChange = (event) => {

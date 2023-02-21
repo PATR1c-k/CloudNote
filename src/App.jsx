@@ -9,24 +9,24 @@ import Signup from "./Components/Signup.jsx";
 import Login from "./Components/Login.jsx";
 
 function App() {
-  const [alert, setalert] = useState(null);
+  const [alert, setAlert] = useState(null);
 
-  function showAlert(message, type) {
-    setalert({
+  const showAlert = (message, type) => {
+    setAlert({
       msg: message,
       type: type,
     });
     setTimeout(() => {
-      setalert(null);
+      setAlert(null);
     }, 1500);
-  }
+  };
 
   return (
     <div>
       <NoteState>
         <Router>
           <Navbar />
-          <Alert alert={alert} />
+          <Alert alert={alert} className="Alert" />
           <div className="container">
             <Routes>
               <Route
